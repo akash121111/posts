@@ -26,6 +26,6 @@ mongoose.connect(db.DATABASE, { useNewUrlParser: true, useUnifiedTopology: true,
 });
 
 const PORT = 3000;
-app.listen(PORT, () => {
+app.listen(process.env.PORT || PORT, () => {
 	console.log(`Server Running on Port ${PORT}`);
 });
