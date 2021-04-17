@@ -37,6 +37,21 @@ const userSchema = mongoose.Schema({
 		type: String,
 		default: null,
 		required: true
+	},
+	followers: [
+		{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'users'
+		}
+	],
+	follow: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'users'
+	},
+	_post: [ { type: mongoose.Schema.Types.ObjectId, ref: 'posts' } ],
+
+	token: {
+		type: String
 	}
 });
 
