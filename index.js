@@ -4,6 +4,7 @@ const cors = require('cors');
 const Color = require('./models/color');
 
 const db = require('./config/config').get(process.env.NODE_ENV);
+const bodyparser = require('body-parser');
 
 //roures
 const userRoutes = require('./routes/user');
@@ -13,6 +14,9 @@ const colorRoutes = require('./routes/color');
 const app = express();
 
 app.use(cors());
+
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({ extended: false }));
 
 app.use('/api/users', userRoutes);
 app.use('/api/posts', userRoutes);
