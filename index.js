@@ -19,7 +19,7 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false }));
 
 app.use('/api/users', userRoutes);
-app.use('/api/posts', userRoutes);
+app.use('/api/contact', postRoutes);
 app.use('/api/color', colorRoutes);
 
 // database connection

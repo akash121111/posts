@@ -2,36 +2,42 @@ const User = require('../models/users');
 const Post = require('../models/posts');
 const express = require('express');
 const jwt = require('jsonwebtoken');
+const Contact = require('../models/contact');
 
-exports.postCreate = async (req, res) => {
-	let user = req.user._id;
-	const post = new Post(req.body);
+exports.contactCreate = async (req, res) => {
+	const con = new Contact(req.body);
 
-	await post
+	await con
 		.save()
 		.then((data) => {
-			let posts = data._id;
-			User.updateOne({ _post: posts })
-				.then((data1) => {
-					res.status(201).json({
-						status: true,
-						message: 'post created '
-						// data: data
-					});
-				})
-				.catch((err) =>
-					res.status(400).json({
-						status: 400,
-						message: ' keys not generated ',
-						data: err
-					})
-				);
+			res.status(201).json({
+				status: 201,
+				message: ' message saved ',
+				data: req.body
+			});
 		})
 		.catch((err) =>
 			res.status(400).json({
 				status: 400,
-				message: ' keys not generated ',
+				message: ' msg not saved ',
 				data: err
 			})
 		);
+};
+
+exports.getContact = async (req, res) => {
+	const data = await Contact.find();
+
+	if (!data) {
+		res.status(204).json({
+			status: 204,
+			message: ' not any messsage '
+		});
+	}
+
+	res.status(200).json({
+		status: 200,
+		message: ' message found ',
+		data: data
+	});
 };
