@@ -5,12 +5,12 @@ const contactS = new mongoose.Schema({
 		type: String
 	},
 	email: {
-		type: String,
-		required: [ true, 'please provide email' ]
+		type: String
 	},
 	subject: {
 		type: String
 	},
+	phone: { type: String },
 	message: {
 		type: String
 	}
